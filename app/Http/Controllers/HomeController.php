@@ -35,6 +35,6 @@ class HomeController extends Controller
     {
         $user_logs = Auth::user()->logs;
 
-        return response()->json($user_logs);
+        return response()->json(compact('user_logs'));
     }
 }

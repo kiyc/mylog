@@ -15,4 +15,10 @@ Route::get('/', 'Auth\LoginController@showLoginForm');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::prefix('api')->name('api.')->group(function () {
+        Route::get('user_logs', 'HomeController@apiGetUserLogs')->name('get_user_logs');
+    });
+});

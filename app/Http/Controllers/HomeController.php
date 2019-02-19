@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -24,5 +24,17 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    /**
+     * ユーザログを返すAPI
+     *
+     * @return json
+     */
+    public function apiGetUserLogs()
+    {
+        $user_logs = Auth::user()->logs;
+
+        return response()->json($user_logs);
     }
 }

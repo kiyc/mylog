@@ -18,7 +18,7 @@
 </head>
 <body>
     <v-app id="app">
-        <v-toolbar>
+        <v-toolbar fixed>
             <v-toolbar-title>{{ config('app.name') }}</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items class="align-center">
@@ -37,7 +37,7 @@
             </v-toolbar-items>
         </v-toolbar>
 
-        <v-content>
+        <v-content style="margin-top:64px">
             <v-container fluid>
                 @guest
                     @yield('content')
@@ -46,7 +46,10 @@
                 @endguest
             </v-container>
         </v-content>
-        <v-footer app></v-footer>
+        <v-footer app>
+            <v-spacer></v-spacer>
+            <span>&copy; {{ date('Y') }} {{ config('app.name') }}</span>
+        </v-footer>
     </v-app>
 
     <!-- Scripts -->

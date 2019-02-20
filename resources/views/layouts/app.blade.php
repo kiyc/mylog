@@ -47,8 +47,9 @@
             </v-container>
         </v-content>
         <v-footer app>
-            <v-spacer></v-spacer>
-            <span>&copy; {{ date('Y') }} {{ config('app.name') }}</span>
+            <v-layout justify-center>
+                <span>&copy; {{ date('Y') }} {{ config('app.name') }}</span>
+            </v-layout>
         </v-footer>
     </v-app>
 

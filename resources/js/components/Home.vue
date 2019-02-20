@@ -1,6 +1,11 @@
 <template>
   <v-layout>
     <v-flex xs12 sm4 offset-sm4>
+      <v-card>
+        <v-btn fixed dark fab bottom right color="indigo">
+          <v-icon>add</v-icon>
+        </v-btn>
+      </v-card>
       <v-card v-for="(log, idx) in userLogs" :key="idx" class="mb-4">
         <v-flex class="pa-3">
           <v-card-title class="pt-0 pb-0">

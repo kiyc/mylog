@@ -41,7 +41,7 @@
           </v-textarea>
           <v-layout>
             <v-flex class="text-xs-right">
-              <v-btn primary large @click="save">Save</v-btn>
+              <v-btn primary large @click="save" :loading="submitLoading" :disabled="submitLoading">Save</v-btn>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -60,19 +60,24 @@ export default {
       },
       date: false,
       errors: [],
+      submitLoading: false,
     }
   },
   methods: {
     save () {
+      this.submitLoading = true;
+
       const url = '/api/user_logs';
       const data = this.form;
 
       axios.post(url, data)
         .then( response => {
+          this.submitLoading = false;
           this.$router.push('/home');
         })
         .catch( error => {
           this.errors = error.response.data.errors;
+          this.submitLoading = false;
           console.log(error);
         });
     },

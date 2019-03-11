@@ -24,3 +24,7 @@ mix.js('resources/js/app.js', 'public/js')
       //'moment'
     ])
     .version();
+
+mix.browserSync({
+  proxy: 'mylog.test'
+});

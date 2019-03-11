@@ -16,9 +16,11 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 import Home from './components/Home';
+import Edit from './components/Edit';
 
 const routes = [
   { path: '/home', name: 'home', component: Home },
+  { path: '/new', name: 'new', component: Edit },
 ];
 
 const router = new VueRouter({ 

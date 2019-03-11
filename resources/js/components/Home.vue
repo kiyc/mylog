@@ -2,7 +2,7 @@
   <v-layout>
     <v-flex xs12 sm4 offset-sm4>
       <v-card>
-        <v-btn fixed dark fab bottom right color="indigo">
+        <v-btn fixed dark fab bottom right color="indigo" @click="moveNew">
           <v-icon>add</v-icon>
         </v-btn>
       </v-card>
@@ -14,6 +14,13 @@
           <v-card-text>
             <p>{{ log.diary }}</p>
             <v-divider class="mb-3"></v-divider>
+          </v-card-text>
+        </v-flex>
+      </v-card>
+      <v-card v-if="!userLogs || !userLogs.length">
+        <v-flex class="pa-3">
+          <v-card-text>
+            <p>Logs are not found.</p>
           </v-card-text>
         </v-flex>
       </v-card>
@@ -43,6 +50,9 @@ export default {
         .catch( error => {
           console.log(error);
         });
+    },
+    moveNew () {
+      this.$router.push('/new');
     },
   },
 }

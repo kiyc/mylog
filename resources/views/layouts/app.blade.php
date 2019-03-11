@@ -19,7 +19,9 @@
 <body>
     <v-app id="app">
         <v-toolbar fixed>
-            <v-toolbar-title>{{ config('app.name') }}</v-toolbar-title>
+            <v-toolbar-title class="header-title">
+                <router-link to="/home">{{ config('app.name') }}</router-link>
+            </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items class="align-center">
                 @guest

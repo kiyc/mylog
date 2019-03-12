@@ -28,6 +28,9 @@ const router = new VueRouter({
   routes,
 });
 
+import Vuex from 'vuex';
+import store from './store';
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -41,6 +44,9 @@ const router = new VueRouter({
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+import UserIcon from './components/UserIcon';
+Vue.component('user-icon', UserIcon);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50,6 +56,7 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     router,
+    store: new Vuex.Store(store),
     methods: {
       logout () {
         document.getElementById('logout-form').submit();

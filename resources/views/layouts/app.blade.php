@@ -32,27 +32,29 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    
-                        <v-menu offset-y>
-                            <v-btn
-                                slot="activator"
-                                icon
-                                >
-                                <v-icon>menu</v-icon>
-                            </v-btn>
-                            <v-list dark dense>
-                                <v-list-tile to='/settings'>
-                                    <v-list-tile-content>
-                                        <v-list-tile-title>Settings</v-list-tile-title>
-                                    </v-list-tile-content>
-                                </v-list-tile>
-                                <v-list-tile @click="logout()">
-                                    <v-list-tile-content>
-                                        <v-list-tile-title>Logout</v-list-tile-title>
-                                    </v-list-tile-content>
-                                </v-list-tile>
-                            </v-list>
-                        </v-menu>
+
+                    <user-icon></user-icon>
+
+                    <v-menu offset-y>
+                        <v-btn
+                            slot="activator"
+                            icon
+                            >
+                            <v-icon>menu</v-icon>
+                        </v-btn>
+                        <v-list dark dense>
+                            <v-list-tile to='/settings'>
+                                <v-list-tile-content>
+                                    <v-list-tile-title>Settings</v-list-tile-title>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                            <v-list-tile @click="logout()">
+                                <v-list-tile-content>
+                                    <v-list-tile-title>Logout</v-list-tile-title>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-menu>
                 @endguest
             </v-toolbar-items>
         </v-toolbar>
@@ -76,6 +78,13 @@
     <!-- Scripts -->
     <script src="{{ asset('js/manifest.js') }}"></script>
     <script src="{{ asset('js/vendor.js') }}"></script>
+    <script>
+    const laravel = {
+        @if (Auth::check())
+        user: @json(Auth::user()),
+        @endif
+    };
+    </script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

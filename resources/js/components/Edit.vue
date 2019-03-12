@@ -41,7 +41,7 @@
           </v-textarea>
           <v-layout>
             <v-flex class="text-xs-right">
-              <v-btn primary large @click="save" :loading="submitLoading" :disabled="submitLoading">Save</v-btn>
+              <v-btn primary large @click="saveUserLog" :loading="submitLoading" :disabled="submitLoading">Save</v-btn>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -51,36 +51,32 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapActions } from 'vuex';
+
 export default {
   data () {
     return {
-      form: {
-        date: '',
-        diary: '',
-      },
       date: false,
-      errors: [],
-      submitLoading: false,
     }
   },
-  methods: {
-    save () {
-      this.submitLoading = true;
-
-      const url = '/api/user_logs';
-      const data = this.form;
-
-      axios.post(url, data)
-        .then( response => {
-          this.submitLoading = false;
-          this.$router.push('/home');
-        })
-        .catch( error => {
-          this.errors = error.response.data.errors;
-          this.submitLoading = false;
-          console.log(error);
-        });
+  computed: {
+    ...mapState(['errors', 'submitLoading']),
+    form: {
+      get () {
+        return this.$store.state.form;
+      },
+      set (newForm) {
+        this.setForm(newForm);
+      },
     },
+  },
+  mounted () {
+    this.setRouter(this.$router);
+    this.initEdit();
+  },
+  methods: {
+    ...mapMutations(['setRouter', 'setForm']),
+    ...mapActions(['initEdit', 'saveUserLog']),
   },
 }
 </script>

@@ -6289,6 +6289,11 @@ vue@^2.5.17:
   version "2.6.6"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.6.tgz#dde41e483c11c46a7bf523909f4f2f816ab60d25"
 
+vuetify-upload-button@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/vuetify-upload-button/-/vuetify-upload-button-1.2.2.tgz#0ab36c491b8a3fa7b4b8ec2fb7366b86c98bf8e1"
+  integrity sha512-WQmAevQl4F2musSLpPzyT3fCBCksFiL7V6Jh8qD1fxGxHjAvjGywJKWjPLMzXDHkJfo6q2OPJtynPU0QXN5hGA==
+
 vuetify@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.2.tgz#7563b3ff4b7305f2dff724873f70b024f3672d96"

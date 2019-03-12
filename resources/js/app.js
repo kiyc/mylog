@@ -49,5 +49,10 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    methods: {
+      logout () {
+        document.getElementById('logout-form').submit();
+      },
+    },
 });

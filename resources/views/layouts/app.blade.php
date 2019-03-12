@@ -18,7 +18,7 @@
 </head>
 <body>
     <v-app id="app">
-        <v-toolbar fixed>
+        <v-toolbar fixed scroll-off-screen>
             <v-toolbar-title class="header-title">
                 <router-link to="/home">{{ config('app.name') }}</router-link>
             </v-toolbar-title>
@@ -32,9 +32,27 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    <v-btn flat href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </v-btn>
+                    
+                        <v-menu offset-y>
+                            <v-btn
+                                slot="activator"
+                                icon
+                                >
+                                <v-icon>menu</v-icon>
+                            </v-btn>
+                            <v-list dark dense>
+                                <v-list-tile to='/setting'>
+                                    <v-list-tile-content>
+                                        <v-list-tile-title>設定</v-list-tile-title>
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                                <v-list-tile @click="logout()">
+                                    <v-list-tile-content>
+                                        <v-list-tile-title>ログアウト</v-list-tile-title>
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                            </v-list>
+                        </v-menu>
                 @endguest
             </v-toolbar-items>
         </v-toolbar>

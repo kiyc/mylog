@@ -41,14 +41,14 @@
                                 <v-icon>menu</v-icon>
                             </v-btn>
                             <v-list dark dense>
-                                <v-list-tile to='/setting'>
+                                <v-list-tile to='/settings'>
                                     <v-list-tile-content>
-                                        <v-list-tile-title>設定</v-list-tile-title>
+                                        <v-list-tile-title>Settings</v-list-tile-title>
                                     </v-list-tile-content>
                                 </v-list-tile>
                                 <v-list-tile @click="logout()">
                                     <v-list-tile-content>
-                                        <v-list-tile-title>ログアウト</v-list-tile-title>
+                                        <v-list-tile-title>Logout</v-list-tile-title>
                                     </v-list-tile-content>
                                 </v-list-tile>
                             </v-list>

@@ -3,7 +3,7 @@
       size="42"
       color="amber lighten-2"
       >
-      <img v-if="user && user.avatar" :src="user.avatar" alt="avatar">
+      <img v-if="user && user.icon" :src="user.icon" alt="avatar">
       <v-icon v-else dark>account_circle</v-icon>
   </v-avatar>
 </template>
@@ -16,7 +16,7 @@ export default {
 
   computed: mapState(['user']),
   mounted () {
-    if (!this.user) {
+    if (!this.user || !this.user.icon) {
       this.$store.dispatch('initUser');
     }
   },

@@ -15,12 +15,15 @@ Vue.use(Vuetify);
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+// pages
 import Home from './components/Home';
 import Edit from './components/Edit';
+import Settings from './components/Settings';
 
 const routes = [
   { path: '/home', name: 'home', component: Home },
   { path: '/new', name: 'new', component: Edit },
+  { path: '/settings', name: 'settings', component: Settings },
 ];
 
 const router = new VueRouter({ 

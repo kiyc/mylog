@@ -1,5 +1,6 @@
 export default {
   state: {
+    userLogs: [],
     user: {},
     form: {},
     icon: {},
@@ -9,6 +10,9 @@ export default {
   },
 
   mutations: {
+    setUserLogs(state, userLogs) {
+      state.userLogs = userLogs;
+    },
     setUser(state, user) {
       state.user = user;
     },
@@ -30,6 +34,19 @@ export default {
   },
 
   actions: {
+    getUserLogs({ commit }) {
+      const url = '/api/user_logs';
+      axios.get(url)
+        .then( response => {
+          commit('setUserLogs', response.data.user_logs);
+        })
+        .catch( error => {
+          console.log(error);
+        });
+    },
+    moveNew({ state }) {
+      state.router.push('/new');
+    },
     initUser({ commit }) {
       commit('setUser', laravel.user);
     },

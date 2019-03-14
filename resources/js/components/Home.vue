@@ -29,31 +29,17 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
-  data () {
-    return {
-      userLogs: [],
-    }
-  },
+  computed: mapState(['userLogs']),
   mounted: function () {
+    this.setRouter(this.$router);
     this.getUserLogs();
   },
   methods: {
-    getUserLogs () {
-      const url = '/api/user_logs';
-      axios.get(url)
-        .then( response => {
-          this.userLogs = response.data.user_logs;
-        })
-        .catch( error => {
-          console.log(error);
-        });
-    },
-    moveNew () {
-      this.$router.push('/new');
-    },
+    ...mapMutations(['setRouter']),
+    ...mapActions(['getUserLogs', 'moveNew']),
   },
 }
 </script>

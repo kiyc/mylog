@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UploadUserIcon;
+use App\Http\Requests\UpdateUser;
 use App\User;
 use Auth;
 use DB;
@@ -12,6 +13,11 @@ use Image;
 
 class SettingsController extends Controller
 {
+    public function index()
+    {
+        return response()->json(['user' => Auth::user()]);
+    }
+
     public function uploadIcon(UploadUserIcon $request)
     {
         $path = $request->icon->store('tmp/images/icon');
@@ -42,13 +48,13 @@ class SettingsController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(UpdateUser $request)
     {
         $data = $request->all();
         $user = Auth::user();
 
         DB::transaction(function () use ($user, $data) {
-            $user_data = [];
+            $user->fill($data);
 
             if (array_get($data, 'reset_icon') && $user->icon) {
                 $icon = str_replace('/storage/', '', $user->icon);
@@ -56,8 +62,9 @@ class SettingsController extends Controller
                     Storage::disk('public')->delete($icon);
                 }
                 $user->icon = null;
-                $user->save();
             }
+
+            $user->save();
 
             if (!array_get($data, 'reset_icon') && array_get($data, 'new_icon')) {
                $user->saveIcon($data['new_icon']);

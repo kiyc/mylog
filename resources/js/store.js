@@ -4,6 +4,7 @@ export default {
     user: {},
     form: {},
     icon: {},
+    messages: null,
     errors: [],
     submitLoading: false,
     router: null,
@@ -21,6 +22,9 @@ export default {
     },
     setIcon(state, icon) {
       state.icon = icon;
+    },
+    setMessages(state, messages) {
+      state.messages = messages;
     },
     setErrors(state, errors) {
       state.errors = errors;
@@ -73,9 +77,18 @@ export default {
           console.log(error);
         });
     },
-    initSettings({ commit }) {
-      commit('setForm', {});
+    initSettings({ state, commit }) {
       commit('setErrors', {});
+
+      const url = '/api/settings';
+      axios.get(url)
+        .then(response => {
+          commit('setUser', response.data.user);
+          commit('setForm', response.data.user);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     saveSettings({ state, commit }) {
       commit('setSubmitLoading', true);
@@ -88,11 +101,14 @@ export default {
 
       axios.patch(url, data)
         .then(response => {
-          commit('setForm', {});
           commit('setErrors', {});
           commit('setUser', response.data.user);
+          commit('setForm', response.data.user);
+          commit('setMessages', ['Updated']);
+          setTimeout(() => {
+            commit('setMessages', null);
+          }, 2000);
           commit('setSubmitLoading', false);
-          state.router.push('/home');
         })
         .catch(error => {
           commit('setErrors', error.response.data.errors);

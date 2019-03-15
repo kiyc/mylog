@@ -28,6 +28,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('upload_icon', 'SettingsController@uploadIcon')->name('upload_icon');
 
-        Route::patch('settings', 'SettingsController@update')->name('update_settings');
+        Route::prefix('settings')->name('settings.')->group(function () {
+            Route::get('/', 'SettingsController@index')->name('index');
+            Route::patch('/', 'SettingsController@update')->name('update');
+        });
     });
 });

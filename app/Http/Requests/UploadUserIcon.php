@@ -31,7 +31,7 @@ class UploadUserIcon extends FormRequest
     public function attributes()
     {
         return [
-            'icon' => 'Icon',
+            'icon' => 'ユーザアイコン',
         ];
     }
 }

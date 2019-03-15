@@ -26,7 +26,7 @@ const routes = [
   { path: '/settings', name: 'settings', component: Settings },
 ];
 
-const router = new VueRouter({ 
+const router = new VueRouter({
   mode: 'history',
   routes,
 });
@@ -57,12 +57,12 @@ Vue.component('user-icon', UserIcon);
  */
 
 const app = new Vue({
-    el: '#app',
-    router,
-    store: new Vuex.Store(store),
-    methods: {
-      logout () {
-        document.getElementById('logout-form').submit();
-      },
+  el: '#app',
+  router,
+  store: new Vuex.Store(store),
+  methods: {
+    logout() {
+      document.getElementById('logout-form').submit();
     },
+  },
 });

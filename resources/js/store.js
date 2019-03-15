@@ -37,10 +37,10 @@ export default {
     getUserLogs({ commit }) {
       const url = '/api/user_logs';
       axios.get(url)
-        .then( response => {
+        .then(response => {
           commit('setUserLogs', response.data.user_logs);
         })
-        .catch( error => {
+        .catch(error => {
           console.log(error);
         });
     },

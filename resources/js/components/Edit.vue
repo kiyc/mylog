@@ -14,7 +14,7 @@
                 lazy
                 full-width
                 transition="scala-transition"
-                >
+              >
                 <v-text-field
                   slot="activator"
                   v-model="form.date"
@@ -22,26 +22,21 @@
                   prepend-icon="event"
                   readonly
                   :error-messages="errors.date"
-                  >
-                </v-text-field>
-                <v-date-picker
-                  no-title
-                  v-model="form.date"
-                  @input="$refs.date.save(form.date)"
-                  >
-                </v-date-picker>
+                ></v-text-field>
+                <v-date-picker no-title v-model="form.date" @input="$refs.date.save(form.date)"></v-date-picker>
               </v-menu>
             </v-flex>
           </v-layout>
-          <v-textarea
-            label="Diary"
-            v-model="form.diary"
-            :error-messages="errors.diary"
-            >
-          </v-textarea>
+          <v-textarea label="Diary" v-model="form.diary" :error-messages="errors.diary"></v-textarea>
           <v-layout>
             <v-flex class="text-xs-right">
-              <v-btn primary large @click="saveUserLog" :loading="submitLoading" :disabled="submitLoading">Save</v-btn>
+              <v-btn
+                primary
+                large
+                @click="saveUserLog"
+                :loading="submitLoading"
+                :disabled="submitLoading"
+              >Save</v-btn>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -51,32 +46,32 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex';
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
-  data () {
+  data() {
     return {
-      date: false,
-    }
+      date: false
+    };
   },
   computed: {
-    ...mapState(['errors', 'submitLoading']),
+    ...mapState(["errors", "submitLoading"]),
     form: {
-      get () {
+      get() {
         return this.$store.state.form;
       },
-      set (newForm) {
+      set(newForm) {
         this.setForm(newForm);
-      },
-    },
+      }
+    }
   },
-  mounted () {
+  mounted() {
     this.setRouter(this.$router);
     this.initEdit();
   },
   methods: {
-    ...mapMutations(['setRouter', 'setForm']),
-    ...mapActions(['initEdit', 'saveUserLog']),
-  },
-}
+    ...mapMutations(["setRouter", "setForm"]),
+    ...mapActions(["initEdit", "saveUserLog"])
+  }
+};
 </script>

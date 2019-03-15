@@ -29,17 +29,17 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex';
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
-  computed: mapState(['userLogs']),
-  mounted: function () {
+  computed: mapState(["userLogs"]),
+  mounted: function() {
     this.setRouter(this.$router);
     this.getUserLogs();
   },
   methods: {
-    ...mapMutations(['setRouter']),
-    ...mapActions(['getUserLogs', 'moveNew']),
-  },
-}
+    ...mapMutations(["setRouter"]),
+    ...mapActions(["getUserLogs", "moveNew"])
+  }
+};
 </script>

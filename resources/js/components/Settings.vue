@@ -41,22 +41,22 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex';
-import UploadButton from 'vuetify-upload-button';
+import { mapState, mapMutations, mapActions } from "vuex";
+import UploadButton from "vuetify-upload-button";
 
 export default {
   components: {
-    'upload-btn': UploadButton,
+    "upload-btn": UploadButton
   },
   computed: {
-    ...mapState(['errors', 'submitLoading', 'user', 'form', 'icon']),
+    ...mapState(["errors", "submitLoading", "user", "form", "icon"])
   },
-  mounted () {
+  mounted() {
     this.setRouter(this.$router);
   },
   methods: {
-    ...mapMutations(['setRouter']),
-    ...mapActions(['saveSettings', 'uploadIcon']),
+    ...mapMutations(["setRouter"]),
+    ...mapActions(["saveSettings", "uploadIcon"])
   }
 };
 </script>

@@ -11,4 +11,13 @@ class UserLog extends Model
         'date',
         'diary',
     ];
+
+    public function scopeSearch($query, $params)
+    {
+        if (($user_id = trim(array_get($params, 'user_id'))) !== '') {
+            $query->where('user_id', $user_id);
+        }
+
+        return $query;
+    }
 }

@@ -6,16 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserLog;
 use Auth;
 use App\UserLog;
+use App\QueryParams;
+use App\GetUserLogs;
 
 class UserLogController extends Controller
 {
+    private $get_user_logs;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(GetUserLogs $get_user_logs)
     {
+        $this->get_user_logs = $get_user_logs;
     }
 
     /**
@@ -23,9 +28,12 @@ class UserLogController extends Controller
      *
      * @return json
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user_logs = Auth::user()->logs;
+        $params = $request->all();
+        $params['user_id'] = Auth::id();
+
+        $user_logs = $this->get_user_logs->execute(new QueryParams($params));
 
         return response()->json(compact('user_logs'));
     }
